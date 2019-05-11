@@ -2,10 +2,13 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QtXml>
 
 namespace Ui {
 class MainWindow;
 }
+
+class QDomDocument;
 
 class MainWindow : public QMainWindow
 {
@@ -14,20 +17,23 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-    void handleFileLoad(const QString& path, QStringList lines);
-    void splitBySeparator(QStringList list);
 
 public slots:
-    void save();
-    void add();
+    void saveToTxt();
+    void saveToXml();
+    void addRecord();
+    void loadTXT();
+    void loadXML();
 
 private:
     Ui::MainWindow *ui;
-    QStringList m_lines;
     QStringList m_editedLines;
     QList<QStringList> m_splited;
-    const QString m_path{"/home/piotr/Projects/Qt/lab2/data"};
+    QString m_path;
+    QDomDocument m_xmlBOM;
+    QStringList* m_headers;
 
+    void loadDataToView();
 };
 
 #endif // MAINWINDOW_H

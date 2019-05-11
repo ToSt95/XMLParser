@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui widgets
+QT       += core gui widgets xml
 
 TARGET = lab2
 TEMPLATE = app
@@ -24,12 +24,10 @@ CONFIG += c++11
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp \
-    model.cpp
+        mainwindow.cpp
 
 HEADERS += \
-        mainwindow.h \
-    model.h
+        mainwindow.h
 
 FORMS += \
         mainwindow.ui
@@ -38,3 +36,6 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    resources.qrc
