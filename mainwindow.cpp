@@ -56,7 +56,12 @@ MainWindow::~MainWindow()
 
 void MainWindow::saveToTxt()
 {
-    QFile file(m_path);
+    QString fileName = QFileDialog::getSaveFileName(this,
+            tr("Save..."), "",
+            tr("All Files (*)"));
+    if(fileName.isEmpty()) return;
+
+    QFile file(fileName);
     if (file.open(QFile::WriteOnly | QFile::Truncate))
     {
         QTextStream data( &file );
@@ -109,7 +114,12 @@ void MainWindow::saveToXml()
         }
     }
 
-    QFile file(m_path);
+    QString fileName = QFileDialog::getSaveFileName(this,
+            tr("Save..."), "",
+            tr("All Files (*)"));
+    if(fileName.isEmpty()) return;
+
+    QFile file(fileName);
     if (file.open(QFile::WriteOnly | QFile::Truncate))
     {
         QTextStream stream(&file);
